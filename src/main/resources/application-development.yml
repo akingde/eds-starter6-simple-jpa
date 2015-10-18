@@ -1,0 +1,16 @@
+spring:
+  resources:
+    cache-period: 
+  jpa:
+    show-sql: true
+
+server:
+  port: 8080
+  compression:
+    enabled: false
+
+logging:
+  level:
+    org.springframework: INFO
+    org.apache: INFO
+    ch: INFO
