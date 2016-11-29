@@ -33,7 +33,6 @@ Ext.define('Starter.Application', {
 	},
 
 	launch: function() {
-		Ext.fly('loading_container').destroy();
 	},
 
 	onAppUpdate: function() {
