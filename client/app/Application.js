@@ -1,6 +1,6 @@
 Ext.define('Starter.Application', {
 	extend: 'Ext.app.Application',
-	requires: [ 'Ext.plugin.Viewport', 'Starter.*', 'Ext.direct.*', 'Ext.window.Toast', 'Ext.form.action.DirectSubmit', 'Ext.form.action.DirectLoad', 'Ext.container.Container' ],
+	requires: [ 'Ext.plugin.Viewport', 'Ext.direct.*', 'Ext.form.action.DirectLoad', 'Ext.form.action.DirectSubmit', 'Ext.window.Toast' ],
 	name: 'Starter',
 
 	controllers: [ 'Root' ],
@@ -9,13 +9,14 @@ Ext.define('Starter.Application', {
 
 	models: [ 'PageHit', 'User' ],
 
-	constructor: function() {
-		// <debug>
-		Ext.Ajax.on('beforerequest', function(conn, options, eOpts) {
-			options.withCredentials = true;
-		}, this);
-		// </debug>
+    quickTips: false,
+    platformConfig: {
+        desktop: {
+            quickTips: true
+        }
+    },
 
+	constructor: function() {
 		var chartDataPoller = new Ext.direct.PollingProvider({
 			id: 'chartDataPoller',
 			type: 'polling',
@@ -30,9 +31,6 @@ Ext.define('Starter.Application', {
 		Ext.direct.Manager.getProvider('chartDataPoller').disconnect();
 
 		this.callParent(arguments);
-	},
-
-	launch: function() {
 	},
 
 	onAppUpdate: function() {

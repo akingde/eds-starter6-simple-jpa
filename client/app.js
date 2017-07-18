@@ -4,7 +4,7 @@ Ext.application({
     extend: 'Starter.Application',
 
     requires: [
-        'Starter.view.main.Main'
+        'Starter.*'
     ],
     mainView: 'Starter.view.main.Main'
 });
