@@ -1,26 +1,25 @@
 Ext.define('Starter.view.form.FormController', {
 	extend: 'Ext.app.ViewController',
 
-	fillRemark: function() {
-		formLoadService.getRemark(function(result) {
+	fillRemark() {
+		formLoadService.getRemark(result => {
 			this.getView().getForm().setValues({
 				remarks: result
 			});
-		}, this);
+		});
 	},
 
-	load: function() {
+	load() {
 		this.getView().getForm().load();
 	},
 
-	submit: function() {
+	submit() {
 		this.getView().getForm().submit({
-			success: function(form, action) {
+			success: (form, action) => {
 				this.getView().getForm().setValues({
 					remarks: action.result.response
 				});
-			},
-			scope: this
+			}
 		});
 	}
 

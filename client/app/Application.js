@@ -16,8 +16,8 @@ Ext.define('Starter.Application', {
         }
     },
 
-	constructor: function() {
-		var chartDataPoller = new Ext.direct.PollingProvider({
+	constructor() {
+		const chartDataPoller = new Ext.direct.PollingProvider({
 			id: 'chartDataPoller',
 			type: 'polling',
 			interval: 5 * 1000, // 5 seconds
@@ -33,7 +33,7 @@ Ext.define('Starter.Application', {
 		this.callParent(arguments);
 	},
 
-	onAppUpdate: function() {
+	onAppUpdate() {
 		window.location.reload();
 	}
 });

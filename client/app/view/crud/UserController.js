@@ -1,19 +1,19 @@
 Ext.define('Starter.view.crud.UserController', {
 	extend: 'Ext.app.ViewController',
 
-	onNamefilterChange: function(field, newValue) {
+	onNamefilterChange(field, newValue) {
 		this.getViewModel().set('nameFilter', newValue);
 	},
 
-	deleteUser: function() {
-		Ext.Msg.confirm('Really delete?', 'Are you sure?', 'onDeleteUserConfirm', this);
+	deleteUser() {
+		Ext.Msg.confirm('Really delete?', 'Are you sure?', this.onDeleteUserConfirm, this);
 	},
 
-	onDeleteUserConfirm: function(choice) {
+	onDeleteUserConfirm(choice) {
 		if (choice === 'yes') {
-			var selectedUser = this.getViewModel().get('selectedUser');
+			const selectedUser = this.getViewModel().get('selectedUser');
 			selectedUser.erase({
-				callback: function(e) {
+				callback: e => {
 					Ext.toast({
 						html: 'User deleted',
 						title: 'Info',
@@ -22,24 +22,23 @@ Ext.define('Starter.view.crud.UserController', {
 						shadow: true
 					});
 					this.getStore('users').load();
-				},
-				scope: this
+				}
 			});
 		}
 	},
 
-	onCancelEdit: function(editor, context, eOpts) {
+	onCancelEdit(editor, context, eOpts) {
 		if (context.record.phantom) {
 			this.getStore('users').remove(context.record);
 		}
 	},
 
-	onEdit: function() {
+	onEdit() {
 		this.getStore('users').sync();
 	},
 
-	newUser: function() {
-		var newUser = new Starter.model.User({
+	newUser() {
+		const newUser = new Starter.model.User({
 			lastName: 'New',
 			firstName: 'Person',
 			email: 'new@email.com',

@@ -1,13 +1,13 @@
 Ext.define('Starter.view.poll.PollController', {
 	extend: 'Ext.app.ViewController',
 
-	onData: function(provider, event) {
+	onData(provider, event) {
 		if (event.data) {
-			var store = this.getStore('pagehits');
+			const store = this.getStore('pagehits');
 
 			store.removeAll(true);
 
-			Ext.each(Ext.Date.monthNames, function(name, ix) {
+			Ext.each(Ext.Date.monthNames, (name, ix) => {
 				store.add(new Starter.model.PageHit({
 					month: name.substring(0, 3),
 					hit: event.data[ix]
@@ -17,8 +17,8 @@ Ext.define('Starter.view.poll.PollController', {
 		}
 	},
 
-	startPolling: function() {
-		var provider = Ext.direct.Manager.getProvider('chartDataPoller');
+	startPolling() {
+		const provider = Ext.direct.Manager.getProvider('chartDataPoller');
 		this.getViewModel().set('running', true);
 
 		if (!provider.isConnected()) {
@@ -27,8 +27,8 @@ Ext.define('Starter.view.poll.PollController', {
 		}
 	},
 
-	stopPolling: function() {
-		var provider = Ext.direct.Manager.getProvider('chartDataPoller');
+	stopPolling() {
+		const provider = Ext.direct.Manager.getProvider('chartDataPoller');
 		this.getViewModel().set('running', false);
 
 		if (provider.isConnected()) {
