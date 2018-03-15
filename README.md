@@ -10,7 +10,7 @@ Prerequisite
 
 1. Clone the repository
 2. ```cd eds-starter6-simple-jpa/client```
-3. ```sencha app install --framework=/path/to/extjs/```
+3. ```sencha app upgrade ../path/to/framework```
 4. ```sencha app watch```
 5. In another shell ```cd eds-starter6-simple-jpa```
 6. ```./mvnw spring-boot:run -Dspring.profiles.active="development"```
