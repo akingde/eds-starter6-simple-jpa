@@ -9,6 +9,13 @@ Ext.define('Starter.view.crud.UserController', {
 		Ext.Msg.confirm('Really delete?', 'Are you sure?', this.onDeleteUserConfirm, this);
 	},
 
+	departmentRenderer(value) {
+		if (value) {
+			return Ext.getStore('Departments').getById(value).get('name');
+		}
+		return value;
+	},
+
 	onDeleteUserConfirm(choice) {
 		if (choice === 'yes') {
 			const selectedUser = this.getViewModel().get('selectedUser');

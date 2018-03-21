@@ -47,15 +47,16 @@ Ext.define('Starter.view.crud.UserGrid', {
 			vtype: 'email'
 		}
 	}, {
-		dataIndex: 'department',
+		dataIndex: 'departmentId',
 		text: 'Department',
 		flex: 1,
+		renderer: 'departmentRenderer',
 		editor: {
 			xtype: 'combobox',
 			store: 'Departments',
 			queryMode: 'local',
 			displayField: 'name',
-			valueField: 'name'
+			valueField: 'id'
 		}
 	} ],
 
@@ -102,7 +103,7 @@ Ext.define('Starter.view.crud.UserGrid', {
 			width: 200,
 			queryMode: 'local',
 			displayField: 'name',
-			valueField: 'name',
+			valueField: 'id',
 			publishes: 'value',
 			triggers: {
 				clear: {

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ public class TreeLoadService {
 	private final UserRepository userRepository;
 	private final DepartmentRepository departmentRepository;
 
-	@Autowired
 	public TreeLoadService(UserRepository userRepository,
 			DepartmentRepository departmentRepository) {
 		this.userRepository = userRepository;
@@ -46,7 +44,7 @@ public class TreeLoadService {
 			return Collections.singletonList(root);
 		}
 
-		return this.userRepository.findByDepartmentOrderByLastNameAsc(node).stream()
+		return this.userRepository.findByDepartmentNameOrderByLastNameAsc(node).stream()
 				.map(u -> {
 					return new Node(u.getId().toString(),
 							u.getLastName() + " " + u.getFirstName(), true, false, null);
